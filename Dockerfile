@@ -7,11 +7,11 @@ RUN curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-ke
 	&& apt-get install --no-install-recommends -y nodejs yarn openjdk-11-jdk language-pack-de language-pack-gnome-de \
 	&& locale-gen de_DE.UTF-8 \
     && update-locale LANG=de_DE.UTF-8 \
-	&& apt-get clean
+	&& apt-get clean \
 	&& wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add - \
     && apt-get update && apt-get install --no-install-recommends -y software-properties-common && add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" \
     && apt-get update \
-    && apt-get install --no-install-recommends -y apt-transport-https wget code openssh-server \
+    && apt-get install --no-install-recommends -y git apt-transport-https wget code openssh-server \
 	&& apt-get clean
 
 #RUN wget -q -O WebStorm.tar.gz https://download-cf.jetbrains.com/webstorm/WebStorm-2020.2.2.tar.gz && \
