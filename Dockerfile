@@ -1,7 +1,7 @@
 FROM ubuntu
 
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y software-properties-common curl wget libxext-dev sudo libxrender-dev libxtst-dev \
+    && apt-get install --no-install-recommends -y software-properties-common curl wget libxext-dev sudo gpg-agent libxrender-dev libxtst-dev \
     && curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add - \
     && wget -qO- https://deb.nodesource.com/setup_12.x | sudo -E bash - \
     && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
