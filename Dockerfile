@@ -1,6 +1,8 @@
-FROM rattydave/docker-ubuntu-xrdp-mate-custom:19.10
+FROM ubuntu
 
-RUN curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add - \
+RUN apt-get update \
+    && apt-get install --no-install-recommends -y software-properties-common curl wget libxext-dev libxrender-dev libxtst-dev \
+    && curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add - \
     && wget -qO- https://deb.nodesource.com/setup_12.x | sudo -E bash - \
     && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 	&& echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list \
@@ -13,6 +15,7 @@ RUN curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-ke
     && apt-get update \
     && apt-get install --no-install-recommends -y git apt-transport-https wget code openssh-server \
 	&& apt-get clean
+
 
 #RUN wget -q -O WebStorm.tar.gz https://download-cf.jetbrains.com/webstorm/WebStorm-2020.2.2.tar.gz && \
 #  tar xfz WebStorm.tar.gz && \
