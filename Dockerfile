@@ -1,5 +1,7 @@
 FROM ubuntu
 
+ADD entrypoint.sh /entrypoint.sh
+
 RUN apt-get update \
     && apt-get install --no-install-recommends -y software-properties-common curl wget libxext-dev sudo gpg-agent libxrender-dev libxtst-dev supervisor xfce4 xfce4-terminal fluxbox \
     && curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add - \
@@ -14,6 +16,10 @@ RUN apt-get update \
     && apt-get update && apt-get install --no-install-recommends -y software-properties-common && add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" \
     && apt-get update \
     && apt-get install --no-install-recommends -y git apt-transport-https wget code openssh-server \
+        && curl -fSL "https://download.nomachine.com/packages/6.12-PRODUCTION/Linux/nomachine-workstation_6.12.3_7_amd64.deb" -o nomachine.deb \
+        && dpkg -i nomachine.deb \
+        && rm nomachine.deb \
+	&& chmod +x /entrypoint.sh \
 	&& apt-get clean
 
 #RUN wget -q -O WebStorm.tar.gz https://download-cf.jetbrains.com/webstorm/WebStorm-2020.2.2.tar.gz && \
