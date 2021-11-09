@@ -22,12 +22,12 @@ RUN apt-get update \
 	&& chmod +x /entrypoint.sh \
 	&& apt-get clean \
 	&& mkdir -p /usr/NX/scripts/userscripts
-COPY userscript.sh /usr/NX/scripts/userscripts/userscript.sh
+COPY userscript.sh /usr/NX/scripts/userscripts/userstartup.sh
 RUN chmod 777 /usr/NX/scripts/userscripts/*.sh
 
 # setting current keymap on user logon
 RUN echo '\n#Custom Startupscript\n\
-UserScriptAfterSessionStart = "/usr/NX/scripts/userscripts/userscript.sh"\n#EOF\n'\
+UserScriptAfterSessionStart = "/usr/NX/scripts/userscripts/userstartup.sh"\n#EOF\n'\
 >> /usr/NX/etc/node.cfg
 
 
