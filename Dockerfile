@@ -16,11 +16,13 @@ RUN apt-get update \
     && apt-get update && apt-get install --no-install-recommends -y software-properties-common && add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" \
     && apt-get update \
     && apt-get install --no-install-recommends -y git apt-transport-https wget code openssh-server \
-        && curl -fSL "https://download.nomachine.com/packages/6.12-PRODUCTION/Linux/nomachine-workstation_6.12.3_7_amd64.deb" -o nomachine.deb \
+        && curl -fSL "https://download.nomachine.com/download/7.7/Linux/nomachine_7.7.4_1_amd64.deb" -o nomachine.deb \
         && dpkg -i nomachine.deb \
         && rm nomachine.deb \
 	&& chmod +x /entrypoint.sh \
 	&& apt-get clean
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 #RUN wget -q -O WebStorm.tar.gz https://download-cf.jetbrains.com/webstorm/WebStorm-2020.2.2.tar.gz && \
 #  tar xfz WebStorm.tar.gz && \
