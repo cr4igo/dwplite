@@ -5,5 +5,7 @@ groupadd -r $USER -g 433 \
     && mkdir -p /home/$USER \
     && chown -R $USER:$USER /home/$USER \
     && echo $USER':'$PASSWORD | chpasswd
-/etc/NX/nxserver --startup
+service dbus start
+service nxserver start
+#/etc/NX/nxserver --startup
 tail -f /usr/NX/var/log/nxserver.log
