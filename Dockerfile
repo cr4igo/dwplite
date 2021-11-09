@@ -1,11 +1,12 @@
 FROM ubuntu
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 
 ADD entrypoint.sh /entrypoint.sh
 
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y software-properties-common build-essential libpython3-dev dbus libdbus-1-dev curl wget libxext-dev sudo gpg-agent libxrender-dev libxtst-dev supervisor xfce4 xfce4-terminal fluxbox \
+    && apt-get install --no-install-recommends -y software-properties-common build-essential libpython3-dev dbus libdbus-1-dev dbus-x11 nano pulseaudio curl wget libxext-dev sudo gpg-agent libxrender-dev libxtst-dev supervisor xfce4 xfce4-terminal fluxbox \
     && curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add - \
     && wget -qO- https://deb.nodesource.com/setup_12.x | sudo -E bash - \
     && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
@@ -23,7 +24,9 @@ RUN apt-get update \
         && rm nomachine.deb \
 	&& chmod +x /entrypoint.sh \
 	&& apt-get clean \
-	&& mkdir -p /usr/NX/scripts/userscripts
+	&& mkdir -p /usr/NX/scripts/userscripts \
+	&& mkdir -p /var/run/dbus
+
 COPY userstartup.sh /usr/NX/scripts/userscripts/userstartup.sh
 RUN chmod 777 /usr/NX/scripts/userscripts/*.sh
 
@@ -31,6 +34,10 @@ RUN chmod 777 /usr/NX/scripts/userscripts/*.sh
 RUN echo '\n#Custom Startupscript\n\
 UserScriptAfterSessionStart = "/usr/NX/scripts/userscripts/userstartup.sh"\n#EOF\n'\
 >> /usr/NX/etc/node.cfg
+
+RUN echo '\n#Overwritten AvailableSessionTypes\n\
+AvailableSessionTypes nxvfb,physical-desktop\n#EOF\n'\
+>> /usr/NX/etc/server.cfg
 
 #DefaultDesktopCommand "/usr/sbin/dbus-launch --exit-with-session startxfce4"\n\
 
