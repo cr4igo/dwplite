@@ -20,7 +20,16 @@ RUN apt-get update \
         && dpkg -i nomachine.deb \
         && rm nomachine.deb \
 	&& chmod +x /entrypoint.sh \
-	&& apt-get clean
+	&& apt-get clean \
+	&& mkdir -p /usr/NX/scripts/userscripts
+COPY userscript.sh /usr/NX/scripts/userscripts/userscript.sh
+RUN chmod 777 /usr/NX/scripts/userscripts/*.sh
+
+# setting current keymap on user logon
+RUN echo '\n#Custom Startupscript\n\
+UserScriptAfterSessionStart = "/usr/NX/scripts/userscripts/userscript.sh"\n#EOF\n'\
+>> /usr/NX/etc/node.cfg
+
 
 ENTRYPOINT ["/entrypoint.sh"]
 
