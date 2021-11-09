@@ -1,5 +1,7 @@
 FROM ubuntu
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 ADD entrypoint.sh /entrypoint.sh
 
 RUN apt-get update \
