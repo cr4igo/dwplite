@@ -29,9 +29,10 @@ RUN chmod 777 /usr/NX/scripts/userscripts/*.sh
 
 # setting current keymap on user logon
 RUN echo '\n#Custom Startupscript\n\
-DefaultDesktopCommand "/usr/sbin/dbus-launch --exit-with-session startxfce4"\n\
 UserScriptAfterSessionStart = "/usr/NX/scripts/userscripts/userstartup.sh"\n#EOF\n'\
 >> /usr/NX/etc/node.cfg
+
+#DefaultDesktopCommand "/usr/sbin/dbus-launch --exit-with-session startxfce4"\n\
 
 
 ENTRYPOINT ["/entrypoint.sh"]
