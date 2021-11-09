@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ADD entrypoint.sh /entrypoint.sh
 
 RUN apt-get update \
-    && apt-get install --no-install-recommends -y software-properties-common build-essential libpython3-dev libdbus-1-dev curl wget libxext-dev sudo gpg-agent libxrender-dev libxtst-dev supervisor xfce4 xfce4-terminal fluxbox \
+    && apt-get install --no-install-recommends -y software-properties-common build-essential libpython3-dev dbus libdbus-1-dev curl wget libxext-dev sudo gpg-agent libxrender-dev libxtst-dev supervisor xfce4 xfce4-terminal fluxbox \
     && curl -sSL https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add - \
     && wget -qO- https://deb.nodesource.com/setup_12.x | sudo -E bash - \
     && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
