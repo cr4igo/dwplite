@@ -18,7 +18,7 @@ RUN apt-get update \
 	&& wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add - \
     && apt-get update && apt-get install --no-install-recommends -y software-properties-common && add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" \
     && apt-get update \
-    && apt-get install --no-install-recommends -y git apt-transport-https wget code openssh-server \
+    && apt-get install --no-install-recommends -y git git-flow htop apt-transport-https wget code openssh-server \
         && curl -fSL "https://download.nomachine.com/download/7.7/Linux/nomachine_7.7.4_1_amd64.deb" -o nomachine.deb \
         && dpkg -i nomachine.deb \
         && rm nomachine.deb \
