@@ -19,7 +19,7 @@ RUN apt-get update \
     && apt-get update && apt-get install --no-install-recommends -y software-properties-common && add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" \
     && apt-get update \
     && apt-get install --no-install-recommends -y git git-flow htop apt-transport-https wget code openssh-server \
-        && curl -fSL "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.de" -o chrome.deb \
+        && curl -fSL "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" -o chrome.deb \
 	&& dpkg -i chrome.deb \
 	&& rm chrome.deb \
         && curl -fSL "https://download.nomachine.com/download/7.7/Linux/nomachine_7.7.4_1_amd64.deb" -o nomachine.deb \
