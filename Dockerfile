@@ -22,7 +22,7 @@ RUN apt-get update \
         && curl -fSL "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" -o chrome.deb \
 	&& dpkg -i chrome.deb \
 	&& rm chrome.deb \
-        && curl -fSL "https://download.nomachine.com/download/7.7/Linux/nomachine_7.7.4_1_amd64.deb" -o nomachine.deb \
+        && curl -fSL "https://download.nomachine.com/packages/7.7-PRODUCTION/Linux/nomachine-enterprise-desktop_7.7.4_1_amd64.deb" -o nomachine.deb \
         && dpkg -i nomachine.deb \
         && rm nomachine.deb \
 	&& chmod +x /entrypoint.sh \
