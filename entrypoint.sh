@@ -7,5 +7,7 @@ groupadd -r $USER -g 433 \
     && echo $USER':'$PASSWORD | chpasswd
 service dbus start
 service nxserver start
+# add guest user
+/usr/NX/bin/nxserver --ruleadd --class feature --type enable-guest --value yes
 #/etc/NX/nxserver --startup
 tail -f /usr/NX/var/log/nxserver.log
