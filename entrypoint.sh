@@ -3,8 +3,10 @@ groupadd -r $USER -g 1000 \
     && useradd -u 1000 -r -g $USER -d /home/$USER -s /bin/bash -c "$USER" $USER \
     && adduser $USER sudo \
     && mkdir -p /home/$USER \
-#    && chown -R $USER:$USER /home/$USER \
     && echo $USER':'$PASSWORD | chpasswd
+
+#    && chown -R $USER:$USER /home/$USER \
+
 service dbus start
 service nxserver start
 # add guest user
